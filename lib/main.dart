@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_app/presentation/screens/counter/counter_functions_screen.dart';
+import 'package:flutter_test_app/config/theme/app_theme.dart';
+import 'package:flutter_test_app/presentation/screens/chat/chat_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(colorSchemeSeed: Colors.blue),
-        title: 'Flutter Demo',
-        home: const CounterFunctionsScreen());
+        title: 'Yes No App',
+        theme: AppTheme(selectedColor: 1).theme(),
+        home: const ChatScreen());
   }
 }
