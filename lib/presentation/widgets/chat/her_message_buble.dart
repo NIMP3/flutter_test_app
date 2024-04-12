@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  final String text;
+  final String? imageUrl;
+  const HerMessageBubble({super.key, required this.text, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,13 @@ class HerMessageBubble extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              "I can't take anything for my headache, because we've run out of painkillers. Sasha's been coughing all day, and now he has a sore throat.",
-              style: TextStyle(color: Colors.white),
+              text,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
         const SizedBox(height: 5),
-        _ImageBubble(),
+        if (imageUrl != null) _ImageBubble(imageUrl: imageUrl!),
         const SizedBox(height: 10)
       ],
     );
@@ -32,6 +34,10 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+
+  const _ImageBubble({required this.imageUrl});
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width * 0.8;
@@ -39,10 +45,10 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/yes/11-a23cbde4ae018bbda812d2d8b2b8fc6c.gif',
+        imageUrl,
         width: width,
-        height: 200,
-        fit: BoxFit.cover,
+        height: 250,
+        fit: BoxFit.fill,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
 
